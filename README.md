@@ -6,7 +6,7 @@ Este programa tendrá las siguientes caracteristicas:<br>
 - Descargar canciones<br>
 - Descargar packs<br></p>
 
-<h3>Para usuarios con VIP Premium: </h3><small>(En Adelante)</small><br>
+<h3>Para usuarios con VIP Premium: </h3><span><small>(En Adelante)</small><br></span>
 - Podrán ver canciones VIP<br>
 - Podrán pedir su temas<br><small>Requiere VIP Supremo</small>
 

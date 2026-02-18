@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D; // ✅ agregado
+using System.Drawing.Drawing2D;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -30,7 +30,7 @@ namespace chilehero_c
         {
             InitializeComponent();
 
-            // ✅ AQUI: aplicar estilo al botón (sin tocar el Designer)
+            // ✅ aplicar estilo al botón (sin tocar el Designer)
             ReplaceLoginButtonStyle();
 
             // ✅ Que el form abra centrado
@@ -74,7 +74,7 @@ namespace chilehero_c
                 Font = old.Font ?? new Font("Oxanium", 12f, FontStyle.Bold),
                 ForeColor = Color.White,
 
-                // Copiar layout básico (igual lo vuelves a setear en MoveExistingControlsToLayout)
+                // Copiar layout básico
                 Size = old.Size,
                 Location = old.Location,
                 Dock = old.Dock,
@@ -82,7 +82,7 @@ namespace chilehero_c
                 Margin = old.Margin,
                 Padding = old.Padding,
 
-                // ✅ Colores del estilo del botón (ajústalos si quieres)
+                // ✅ Colores del estilo del botón
                 StartColor = ColorTranslator.FromHtml("#D12A2A"),
                 EndColor = ColorTranslator.FromHtml("#2A45D1"),
                 Mode = LinearGradientMode.ForwardDiagonal,
@@ -98,7 +98,7 @@ namespace chilehero_c
             // ✅ Mantener el click del login
             gb.Click += btn_iniciasesion_Click;
 
-            // Reemplazo en el contenedor original (si todavía tiene parent en este punto)
+            // Reemplazo en el contenedor original
             var parent = old.Parent;
             if (parent != null)
             {
@@ -108,7 +108,7 @@ namespace chilehero_c
                 parent.Controls.SetChildIndex(gb, index);
             }
 
-            // ✅ Cambiar referencia (esto es CLAVE)
+            // ✅ Cambiar referencia (CLAVE)
             btn_iniciasesion = gb;
         }
 
@@ -120,7 +120,7 @@ namespace chilehero_c
                 Dock = DockStyle.Fill,
                 StartColor = ColorTranslator.FromHtml("#01030A"),
                 EndColor = ColorTranslator.FromHtml("#040719"),
-                Mode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal
+                Mode = LinearGradientMode.BackwardDiagonal
             };
 
             Controls.Add(bg);
@@ -140,7 +140,7 @@ namespace chilehero_c
             layout = new TableLayoutPanel
             {
                 ColumnCount = 1,
-                RowCount = 7, // ✅ 7 filas: logo, titulo, label correo, input correo, label pass, input pass, botón
+                RowCount = 7, // logo, titulo, label correo, input correo, label pass, input pass, botón
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 BackColor = Color.Transparent
@@ -152,7 +152,6 @@ namespace chilehero_c
                 layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
             container.Controls.Add(layout);
-
             container.Resize += (s, e) => CenterLayout();
         }
 
@@ -295,6 +294,38 @@ namespace chilehero_c
             }
         }
 
+        private void ShowCredencialesInvalidas()
+        {
+            CustomMessageBox.Error(
+                "Usuario o contraseña incorrectos.\n\nVerifica tus datos e intenta nuevamente.",
+                "Credenciales inválidas",
+                this
+            );
+        }
+
+        private void ShowErrorConexion(Exception ex)
+        {
+            CustomMessageBox.Error(
+                "No se pudo conectar al servidor.\n\n" +
+                "• Revisa tu conexión a Internet\n" +
+                "• Intenta nuevamente en unos segundos\n\n" +
+                "Detalle: " + ex.Message,
+                "Error de conexión",
+                this
+            );
+        }
+
+        private void CamposVacios()
+        {
+            CustomMessageBox.Warning("Ingresa tus credenciales", "Aviso", this);
+
+            // ✅ Recomendado: enfocar el primer campo vacío
+            if (string.IsNullOrWhiteSpace(txt_correo.Text))
+                txt_correo.Focus();
+            else
+                txt_pass.Focus();
+        }
+
         // ========= LOGIN =========
 
         private void btn_iniciasesion_Click(object sender, EventArgs e)
@@ -304,19 +335,22 @@ namespace chilehero_c
 
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(pass))
             {
-                MessageBox.Show("Ingrese usuario y contraseña.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CamposVacios();
                 return;
             }
 
-            var connectionString = "Server=server.001webhospedaje.com;Database=tdrmgkza_chilehero;Uid=tdrmgkza_chilehero;Pwd=181730366u;";
+            // ⚠️ Recomendación: mueve esto a config (App.config)
+            var connectionString =
+                "Server=server.001webhospedaje.com;Database=tdrmgkza_chilehero;Uid=tdrmgkza_chilehero;Pwd=181730366u;";
 
             try
             {
+                // ✅ Evita doble click durante login
+                btn_iniciasesion.Enabled = false;
+
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-
 
                     const string sql = @"
                         SELECT 
@@ -331,17 +365,16 @@ namespace chilehero_c
                         LIMIT 1;
                     ";
 
-
                     using (var cmd = new MySqlCommand(sql, connection))
                     {
                         cmd.Parameters.AddWithValue("@user", usuario);
 
                         using (var reader = cmd.ExecuteReader())
                         {
+                            // ❌ Usuario no existe => credenciales inválidas
                             if (!reader.Read())
                             {
-                                MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                ShowCredencialesInvalidas();
                                 return;
                             }
 
@@ -356,22 +389,23 @@ namespace chilehero_c
                             var razon = DbNullToNull(reader["razon"]);
                             var baneadoPor = DbNullToNull(reader["baneado_por"]);
 
+                            // ❌ Hash null => bloquear login
                             if (string.IsNullOrWhiteSpace(dbHash))
                             {
-                                MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                ShowCredencialesInvalidas();
                                 return;
                             }
 
                             var enteredHash = ComputeSha256Hash(pass);
 
+                            // ❌ Contraseña incorrecta => credenciales inválidas
                             if (!string.Equals(dbHash, enteredHash, StringComparison.OrdinalIgnoreCase))
                             {
-                                MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                ShowCredencialesInvalidas();
                                 return;
                             }
 
+                            // ✅ Baneado por rol o tabla Baneados
                             bool estaBaneado =
                                 string.Equals(rol, "Baneado", StringComparison.OrdinalIgnoreCase)
                                 || !string.IsNullOrWhiteSpace(razon)
@@ -382,15 +416,14 @@ namespace chilehero_c
                                 string razonMsg = string.IsNullOrWhiteSpace(razon) ? "No especificada" : razon;
                                 string baneadoPorMsg = string.IsNullOrWhiteSpace(baneadoPor) ? "No especificado" : baneadoPor;
 
-                                MessageBox.Show(
+                                CustomMessageBox.Error(
                                     "Tu cuenta está BANEADA.\n\n" +
                                     "Razón: " + razonMsg + "\n" +
-                                    "Baneado por: " + baneadoPorMsg + "\n" +
-                                    "Contacta al administrador para revisar tu cuenta\n" +
+                                    "Baneado por: " + baneadoPorMsg + "\n\n" +
+                                    "Contacta al administrador para revisar tu cuenta:\n" +
                                     "chilehero2023@gmail.com",
                                     "Acceso denegado",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error
+                                    this
                                 );
 
                                 txt_pass.Clear();
@@ -398,8 +431,15 @@ namespace chilehero_c
                                 return;
                             }
 
-                            MessageBox.Show("Inicio de sesión correcto. Rol: " + rol, "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // ✅ Login OK
+                            // ✅ CAMBIO IMPORTANTE: modal = true (antes lo tenías en false)
+                            CustomMessageBox.Show(
+                                "Inicio de sesión correcto.",
+                                "Éxito",
+                                CustomMessageBoxType.Success,
+                                true,  // ✅ AQUÍ ESTÁ EL CAMBIO CLAVE
+                                this
+                            );
 
                             var f2 = new Form2(connectionString, rol, nombre);
                             f2.Show();
@@ -408,10 +448,25 @@ namespace chilehero_c
                     }
                 }
             }
+            catch (MySqlException ex)
+            {
+                ShowErrorConexion(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                ShowErrorConexion(ex);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al conectar o ejecutar consulta: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Error(
+                    "Ocurrió un error inesperado.\n\nDetalle: " + ex.Message,
+                    "Error",
+                    this
+                );
+            }
+            finally
+            {
+                btn_iniciasesion.Enabled = true;
             }
         }
     }

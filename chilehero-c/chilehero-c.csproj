@@ -82,6 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorUtils.cs" />
+    <Compile Include="CustomMessageBox.cs" />
+    <Compile Include="CustomMessageBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomMessageBoxType.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

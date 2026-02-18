@@ -37,7 +37,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::chilehero_c.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(77, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(69, 62);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(698, 828);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

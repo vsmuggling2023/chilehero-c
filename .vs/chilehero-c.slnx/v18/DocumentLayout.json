@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|c:\\users\\vdperez\\onedrive - bechtel corporation\\documents\\github\\chilehero-c\\chilehero-c\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|solutionrelative:chilehero-c\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|c:\\users\\vdperez\\onedrive - bechtel corporation\\documents\\github\\chilehero-c\\chilehero-c\\gradientpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|solutionrelative:chilehero-c\\gradientpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|solutionrelative:chilehero-c\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|solutionrelative:chilehero-c\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|c:\\users\\vdperez\\onedrive - bechtel corporation\\documents\\github\\chilehero-c\\chilehero-c\\custommessagebox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE891E6-F1EF-4824-94FE-8E31708D1781}|chilehero-c\\chilehero-c.csproj|solutionrelative:chilehero-c\\custommessagebox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,37 +23,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form2.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\Form2.cs",
-              "RelativeDocumentMoniker": "chilehero-c\\Form2.cs",
-              "ToolTip": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\Form2.cs [Dise\u00F1o]",
-              "RelativeToolTip": "chilehero-c\\Form2.cs [Dise\u00F1o]",
+              "Title": "GradientPanel.cs",
+              "DocumentMoniker": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\GradientPanel.cs",
+              "RelativeDocumentMoniker": "chilehero-c\\GradientPanel.cs",
+              "ToolTip": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\GradientPanel.cs",
+              "RelativeToolTip": "chilehero-c\\GradientPanel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T18:27:38.668Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-02-18T20:07:38.717Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\Form1.cs",
-              "RelativeDocumentMoniker": "chilehero-c\\Form1.cs",
-              "ToolTip": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "chilehero-c\\Form1.cs [Dise\u00F1o]",
+              "Title": "CustomMessageBox.cs",
+              "DocumentMoniker": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\CustomMessageBox.cs",
+              "RelativeDocumentMoniker": "chilehero-c\\CustomMessageBox.cs",
+              "ToolTip": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\CustomMessageBox.cs",
+              "RelativeToolTip": "chilehero-c\\CustomMessageBox.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAuwB0AAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T18:27:36.813Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\Form1.cs",
-              "RelativeDocumentMoniker": "chilehero-c\\Form1.cs",
-              "ToolTip": "C:\\Users\\vdperez\\OneDrive - Bechtel Corporation\\Documents\\GitHub\\chilehero-c\\chilehero-c\\Form1.cs",
-              "RelativeToolTip": "chilehero-c\\Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T18:27:33.154Z"
+              "WhenOpened": "2026-02-18T18:35:44.995Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -18,6 +18,9 @@ namespace chilehero_c
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
+            // ✅ CLAVE ABSOLUTA: deja que WinForms pinte el fondo base
+            base.OnPaintBackground(e);
+
             Rectangle rect = ClientRectangle;
             if (rect.Width <= 0 || rect.Height <= 0) return;
 

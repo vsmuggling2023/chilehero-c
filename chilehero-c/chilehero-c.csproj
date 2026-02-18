@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{058B4606-4EC2-4B86-8580-1FEDB8E44CB9}</ProjectGuid>
+    <ProjectGuid>{CCE891E6-F1EF-4824-94FE-8E31708D1781}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>chilehero_c</RootNamespace>
     <AssemblyName>chilehero-c</AssemblyName>

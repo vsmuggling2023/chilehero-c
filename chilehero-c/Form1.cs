@@ -296,7 +296,7 @@ namespace chilehero_c
 
         private void ShowCredencialesInvalidas()
         {
-            CustomMessageBox.Error(
+            CustomMessageBox.Warning(
                 "Usuario o contraseña incorrectos.\n\nVerifica tus datos e intenta nuevamente.",
                 "Credenciales inválidas",
                 this
@@ -315,17 +315,6 @@ namespace chilehero_c
             );
         }
 
-        private void CamposVacios()
-        {
-            CustomMessageBox.Warning("Ingresa tus credenciales", "Aviso", this);
-
-            // ✅ Recomendado: enfocar el primer campo vacío
-            if (string.IsNullOrWhiteSpace(txt_correo.Text))
-                txt_correo.Focus();
-            else
-                txt_pass.Focus();
-        }
-
         // ========= LOGIN =========
 
         private void btn_iniciasesion_Click(object sender, EventArgs e)
@@ -333,11 +322,6 @@ namespace chilehero_c
             var usuario = txt_correo.Text.Trim();
             var pass = txt_pass.Text;
 
-            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(pass))
-            {
-                CamposVacios();
-                return;
-            }
 
             // ⚠️ Recomendación: mueve esto a config (App.config)
             var connectionString =
@@ -371,6 +355,15 @@ namespace chilehero_c
 
                         using (var reader = cmd.ExecuteReader())
                         {
+                            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(pass))
+                            {
+                                CustomMessageBox.Error(
+                                    "Faltan Datos.\n\nColoca tus credenciales.",
+                                    "Faltan Datos",
+                                    this
+                                );
+                                return;
+                            }
                             // ❌ Usuario no existe => credenciales inválidas
                             if (!reader.Read())
                             {
@@ -431,15 +424,6 @@ namespace chilehero_c
                                 return;
                             }
 
-                            // ✅ Login OK
-                            // ✅ CAMBIO IMPORTANTE: modal = true (antes lo tenías en false)
-                            CustomMessageBox.Show(
-                                "Inicio de sesión correcto.",
-                                "Éxito",
-                                CustomMessageBoxType.Success,
-                                true,  // ✅ AQUÍ ESTÁ EL CAMBIO CLAVE
-                                this
-                            );
 
                             var f2 = new Form2(connectionString, rol, nombre);
                             f2.Show();

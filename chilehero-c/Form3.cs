@@ -23,11 +23,9 @@ namespace chilehero_c
 
         private readonly Font _btnFont = new Font("Oxanium", 9.5f, FontStyle.Bold);
 
-        // ✅ DOS progress bars
-        private GradientProgressBar _pbLoading;   // arriba: cargar canciones
-        private GradientProgressBar _pbDownload;  // abajo: descargas
+        private GradientProgressBar _pbLoading;  
+        private GradientProgressBar _pbDownload;  
 
-        // HTTP + cookies (Drive puede requerir confirmación)
         private readonly CookieContainer _cookies = new CookieContainer();
         private readonly HttpClient _http;
 

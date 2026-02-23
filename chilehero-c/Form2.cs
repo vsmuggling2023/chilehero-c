@@ -216,7 +216,8 @@ namespace chilehero_c
 
         private void btn_subirpuntajes_Click(object sender, EventArgs e)
         {
-            CustomMessageBox.Info("Subir Puntajes\n\n(Solo diseño por ahora)", "En construcción", this);
+            var f4 = new Form4(_connectionString);
+            f4.Show();
         }
 
         private void btn_vertuspuntajes_Click(object sender, EventArgs e)

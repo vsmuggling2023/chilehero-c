@@ -179,8 +179,7 @@ namespace chilehero_c
 
         private void WrapExistingTextBoxesWithYellowBorder()
         {
-            // ✅ FIX: ambos TextBox deben ser multiline = false
-            // (especialmente txt_pass, si es multiline el password mask falla)
+            // ✅ FIX: no multiline, especialmente password
             correoBorder = CreateBorderForTextBox(txt_correo, multiline: false);
             passBorder = CreateBorderForTextBox(txt_pass, multiline: false);
 
@@ -193,14 +192,12 @@ namespace chilehero_c
             correoBorder.Height = 48;
             passBorder.Height = 48;
 
-            // ✅ Ahora sí funciona correctamente
             txt_pass.UseSystemPasswordChar = true;
 
             txt_correo.Dock = DockStyle.Fill;
             txt_pass.Dock = DockStyle.Fill;
         }
 
-        // ✅ FIX: ahora controlas si el textbox es multiline o no
         private RoundedBorderPanel CreateBorderForTextBox(TextBox tb, bool multiline)
         {
             var border = new RoundedBorderPanel
@@ -288,7 +285,8 @@ namespace chilehero_c
             var usuario = txt_correo.Text.Trim();
             var pass = txt_pass.Text;
 
-            var connectionString = "Server=INSERTARHOST;Database=INSERTARBASEDATOS;Uid=INSERTARUSUARIO;Pwd=INSERTARPASS;";
+            var connectionString =
+                "Server=server.001webhospedaje.com;Database=tdrmgkza_chilehero;Uid=tdrmgkza_chilehero;Pwd=181730366u;";
 
             try
             {
@@ -298,8 +296,11 @@ namespace chilehero_c
                 {
                     connection.Open();
 
+                    // ✅ IMPORTANTE: ahora traemos u.id y u.correo
                     const string sql = @"
                         SELECT 
+                            u.id,
+                            u.correo,
                             u.nombre,
                             u.contrasena, 
                             u.rol, 
@@ -382,6 +383,15 @@ namespace chilehero_c
                                 txt_pass.Focus();
                                 return;
                             }
+
+                            // ✅ GUARDAR SESIÓN (sin tocar Form2)
+                            int userId = Convert.ToInt32(reader["id"]);
+                            string correoDb = DbNullToNull(reader["correo"]);
+
+                            Session.UserId = userId;
+                            Session.Correo = correoDb;
+                            Session.Nombre = nombre;
+                            Session.Rol = rol;
 
                             var f2 = new Form2(connectionString, rol, nombre);
                             f2.Show();

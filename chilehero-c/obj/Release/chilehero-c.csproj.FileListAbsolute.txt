@@ -28,6 +28,7 @@ C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chi
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Release\chilehero_c.Form1.resources
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Release\chilehero_c.Form2.resources
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Release\chilehero_c.Form3.resources
+C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Release\chilehero_c.Form4.resources
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Release\chilehero_c.Properties.Resources.resources
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Release\chilehero-c.csproj.GenerateResource.cache
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Release\chilehero-c.csproj.CoreCompileInputs.cache

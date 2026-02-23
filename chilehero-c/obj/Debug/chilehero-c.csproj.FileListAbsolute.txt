@@ -64,3 +64,4 @@ C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chi
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Debug\chileher.DA9D13A5.Up2Date
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Debug\chilehero-c.exe
 C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Debug\chilehero-c.pdb
+C:\Users\vdperez\OneDrive - Bechtel Corporation\Documents\GitHub\chilehero-c\chilehero-c\obj\Debug\chilehero_c.Form3.resources

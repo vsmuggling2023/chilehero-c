@@ -35,20 +35,18 @@ namespace chilehero_c
             return Color.FromArgb(r / colors.Length, g / colors.Length, b / colors.Length);
         }
 
-        // factor 0..1 (0 = igual, 1 = blanco total)
         public static Color Lighten(Color c, float factor)
         {
-            factor = Clamp(factor, 0f, 1f);  // <-- CAMBIO AQUÍ
+            factor = Clamp(factor, 0f, 1f);
             int r = (int)Math.Round(c.R + (255 - c.R) * factor);
             int g = (int)Math.Round(c.G + (255 - c.G) * factor);
             int b = (int)Math.Round(c.B + (255 - c.B) * factor);
             return Color.FromArgb(r, g, b);
         }
 
-        // factor 0..1 (0 = igual, 1 = negro total)
         public static Color Darken(Color c, float factor)
         {
-            factor = Clamp(factor, 0f, 1f);  // <-- CAMBIO AQUÍ
+            factor = Clamp(factor, 0f, 1f);
             int r = (int)Math.Round(c.R * (1 - factor));
             int g = (int)Math.Round(c.G * (1 - factor));
             int b = (int)Math.Round(c.B * (1 - factor));

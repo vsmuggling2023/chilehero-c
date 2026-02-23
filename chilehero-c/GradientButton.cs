@@ -85,13 +85,11 @@ namespace chilehero_c
 
             using (GraphicsPath path = RoundedRect(rect, BorderRadius))
             {
-                // Fondo gradiente
                 using (var brush = new LinearGradientBrush(rect, StartColor, EndColor, Mode))
                 {
                     e.Graphics.FillPath(brush, path);
                 }
 
-                // Glow en hover o foco
                 bool fx = GlowOnHover && (_hover || _focus);
                 if (fx)
                 {
@@ -107,7 +105,6 @@ namespace chilehero_c
                     }
                 }
 
-                // Borde
                 Color b = (_hover || _focus) ? BorderHoverColor : BorderColor;
                 using (var pen = new Pen(b, BorderSize))
                 {
@@ -115,7 +112,6 @@ namespace chilehero_c
                     e.Graphics.DrawPath(pen, path);
                 }
 
-                // Contenido: íconos + texto
                 DrawContent(e.Graphics, rect);
             }
         }

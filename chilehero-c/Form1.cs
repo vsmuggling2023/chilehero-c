@@ -12,15 +12,12 @@ namespace chilehero_c
     {
         private GradientPanel bg;
 
-        // Layout responsive
         private Panel container;
         private TableLayoutPanel layout;
 
-        // Bordes para tus textboxes existentes
         private RoundedBorderPanel correoBorder;
         private RoundedBorderPanel passBorder;
 
-        // Colores
         private readonly Color _inputBg = ColorTranslator.FromHtml("#202024");
         private readonly Color _inputText = Color.Gainsboro;
         private readonly Color _yellow = ColorTranslator.FromHtml("#F2C200");
@@ -29,43 +26,25 @@ namespace chilehero_c
         public Form1()
         {
             InitializeComponent();
-
-            // ✅ aplicar estilo al botón (sin tocar el Designer)
             ReplaceLoginButtonStyle();
-
-            // ✅ Que el form abra centrado
             StartPosition = FormStartPosition.CenterScreen;
 
-            // ✅ No maximizar
             MaximizeBox = false;
-
-            // OPCIONAL: si además NO quieres resize arrastrando:
-            // FormBorderStyle = FormBorderStyle.FixedSingle;
-
             BuildBackground();
             BuildResponsiveLayout();
             MoveExistingControlsToLayout();
             WrapExistingTextBoxesWithYellowBorder();
 
-            // ✅ Centrar cuando ya hay tamaños reales
             Shown += (s, e) => CenterLayout();
             Resize += (s, e) => CenterLayout();
         }
 
-        /// <summary>
-        /// Reemplaza el btn_iniciasesion estándar por GradientButton manteniendo:
-        /// - Parent (el layout lo asignas después, no importa)
-        /// - evento Click (login)
-        /// - nombre, texto, tamaño, márgenes, dock, anchor
-        /// </summary>
         private void ReplaceLoginButtonStyle()
         {
-            // Si el botón ya fue reemplazado, no hagas nada
             if (btn_iniciasesion is GradientButton) return;
 
             var old = btn_iniciasesion;
 
-            // Crear el nuevo botón estilizado
             var gb = new GradientButton
             {
                 Name = old.Name,
@@ -73,16 +52,12 @@ namespace chilehero_c
 
                 Font = old.Font ?? new Font("Oxanium", 12f, FontStyle.Bold),
                 ForeColor = Color.White,
-
-                // Copiar layout básico
                 Size = old.Size,
                 Location = old.Location,
                 Dock = old.Dock,
                 Anchor = old.Anchor,
                 Margin = old.Margin,
                 Padding = old.Padding,
-
-                // ✅ Colores del estilo del botón
                 StartColor = ColorTranslator.FromHtml("#D12A2A"),
                 EndColor = ColorTranslator.FromHtml("#2A45D1"),
                 Mode = LinearGradientMode.ForwardDiagonal,
@@ -95,10 +70,8 @@ namespace chilehero_c
                 GlowSize = 8
             };
 
-            // ✅ Mantener el click del login
             gb.Click += btn_iniciasesion_Click;
 
-            // Reemplazo en el contenedor original
             var parent = old.Parent;
             if (parent != null)
             {
@@ -108,11 +81,9 @@ namespace chilehero_c
                 parent.Controls.SetChildIndex(gb, index);
             }
 
-            // ✅ Cambiar referencia (CLAVE)
             btn_iniciasesion = gb;
         }
 
-        // 1) Fondo gradiente
         private void BuildBackground()
         {
             bg = new GradientPanel
@@ -127,7 +98,6 @@ namespace chilehero_c
             bg.SendToBack();
         }
 
-        // 2) Layout responsive: contenedor + TableLayout centrado
         private void BuildResponsiveLayout()
         {
             container = new Panel
@@ -140,7 +110,7 @@ namespace chilehero_c
             layout = new TableLayoutPanel
             {
                 ColumnCount = 1,
-                RowCount = 7, // logo, titulo, label correo, input correo, label pass, input pass, botón
+                RowCount = 7,
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 BackColor = Color.Transparent
@@ -155,7 +125,6 @@ namespace chilehero_c
             container.Resize += (s, e) => CenterLayout();
         }
 
-        // Centrar y ajustar ancho del bloque
         private void CenterLayout()
         {
             if (container == null || layout == null) return;
@@ -168,7 +137,6 @@ namespace chilehero_c
             layout.Top = (container.ClientSize.Height - layout.Height) / 2;
         }
 
-        // 3) Tomar controles existentes y meterlos al layout
         private void MoveExistingControlsToLayout()
         {
             pictureBox1.BackColor = Color.Transparent;
@@ -192,7 +160,6 @@ namespace chilehero_c
             lb_correo.Margin = new Padding(0, 0, 0, 8);
             lb_pass.Margin = new Padding(0, 18, 0, 8);
 
-            // Agregar al layout
             layout.Controls.Add(pictureBox1, 0, 0);
             layout.Controls.Add(lb_titulo, 0, 1);
             layout.Controls.Add(lb_correo, 0, 2);
@@ -200,7 +167,6 @@ namespace chilehero_c
 
             pictureBox1.Anchor = AnchorStyles.None;
 
-            // ✅ Botón en la fila 6 (debajo del pass)
             btn_iniciasesion.Parent = layout;
             btn_iniciasesion.Dock = DockStyle.Top;
             btn_iniciasesion.Height = 45;
@@ -209,8 +175,6 @@ namespace chilehero_c
 
             layout.Controls.Add(btn_iniciasesion, 0, 6);
         }
-
-        // 4) Envolver txt_correo y txt_pass con borde amarillo
         private void WrapExistingTextBoxesWithYellowBorder()
         {
             correoBorder = CreateBorderForTextBox(txt_correo);
@@ -277,8 +241,6 @@ namespace chilehero_c
             return border;
         }
 
-        // ========= HELPERS PARA EVITAR DBNull =========
-
         private static string DbNullToNull(object value)
         {
             return (value == null || value == DBNull.Value) ? null : Convert.ToString(value);
@@ -315,21 +277,15 @@ namespace chilehero_c
             );
         }
 
-        // ========= LOGIN =========
-
         private void btn_iniciasesion_Click(object sender, EventArgs e)
         {
             var usuario = txt_correo.Text.Trim();
             var pass = txt_pass.Text;
 
-
-            // ⚠️ Recomendación: mueve esto a config (App.config)
-            var connectionString =
-                "Server=server.001webhospedaje.com;Database=tdrmgkza_chilehero;Uid=tdrmgkza_chilehero;Pwd=181730366u;";
+            var connectionString = "Server=INSERTARHOST;Database=INSERTARBASEDATOS;Uid=INSERTARUSUARIO;Pwd=INSERTARPASS;";
 
             try
             {
-                // ✅ Evita doble click durante login
                 btn_iniciasesion.Enabled = false;
 
                 using (var connection = new MySqlConnection(connectionString))
@@ -364,7 +320,6 @@ namespace chilehero_c
                                 );
                                 return;
                             }
-                            // ❌ Usuario no existe => credenciales inválidas
                             if (!reader.Read())
                             {
                                 ShowCredencialesInvalidas();
@@ -382,7 +337,6 @@ namespace chilehero_c
                             var razon = DbNullToNull(reader["razon"]);
                             var baneadoPor = DbNullToNull(reader["baneado_por"]);
 
-                            // ❌ Hash null => bloquear login
                             if (string.IsNullOrWhiteSpace(dbHash))
                             {
                                 ShowCredencialesInvalidas();
@@ -391,14 +345,12 @@ namespace chilehero_c
 
                             var enteredHash = ComputeSha256Hash(pass);
 
-                            // ❌ Contraseña incorrecta => credenciales inválidas
                             if (!string.Equals(dbHash, enteredHash, StringComparison.OrdinalIgnoreCase))
                             {
                                 ShowCredencialesInvalidas();
                                 return;
                             }
 
-                            // ✅ Baneado por rol o tabla Baneados
                             bool estaBaneado =
                                 string.Equals(rol, "Baneado", StringComparison.OrdinalIgnoreCase)
                                 || !string.IsNullOrWhiteSpace(razon)

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="chilehero-c.exe" size="2528696">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="chilehero-c.exe" size="2529208">
       <assemblyIdentity name="chilehero-c" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rQiBhH5o+UlOCLwCJ/Xv74r28zwSTsOd29YlyPLb9pA=</dsig:DigestValue>
+        <dsig:DigestValue>uVZt5o9XURhlLQgk2qa5R4wmrqCwWZQc1chskAmOOLY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

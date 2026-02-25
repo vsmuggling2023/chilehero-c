@@ -286,7 +286,7 @@ namespace chilehero_c
             var pass = txt_pass.Text;
 
             var connectionString =
-                "Server=server.001webhospedaje.com;Database=tdrmgkza_chilehero;Uid=tdrmgkza_chilehero;Pwd=181730366u;";
+                "Server=HOSTBASEDATOS;Database=BASEDEDATOS;Uid=USUARIOBASEDEDATOS;Pwd=CONTRASEÑA;";
 
             try
             {
